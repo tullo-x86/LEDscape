@@ -12,3 +12,7 @@ am335x/pasm/pasm
 *~
 *~
 bin/*
+.cproject
+.kdev4/
+.project
+LEDscape.kdev4
