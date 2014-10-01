@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Compiling the overlay from .dts to .dtbo"
+filename=$(basename "$1")
+extension="${filename##*.}"
+filename="${filename%.*}"
+dtc -O dtb -o "${filename}-00A0.dtbo" -b 0 -@ $1
