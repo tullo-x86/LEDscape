@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h> // time
 #include <getopt.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -29,7 +30,7 @@ static void pabort(const char *s)
 	abort();
 }
 
-static const char *device = "/dev/spidev1.1";
+static const char *device = "/dev/spidev1.0";
 static uint8_t mode;
 static uint8_t bits = 8;
 static uint32_t speed = 500000;
@@ -37,15 +38,20 @@ static uint16_t delay;
 
 static void transfer(int fd)
 {
+	uint8_t b1 = 0xE0 | (rand() & 0x1F),
+		b2 = 0xE0 | (rand() & 0x1F),
+		b3 = 0xE0 | (rand() & 0x1F),
+		b4 = 0xE0 | (rand() & 0x1F);
 	int ret;
+
+
 	uint8_t tx[] = {
-		0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-		0x40, 0x00, 0x00, 0x00, 0x00, 0x95,
-		0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-		0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-		0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-		0xDE, 0xAD, 0xBE, 0xEF, 0xBA, 0xAD,
-		0xF0, 0x0D,
+		0x00, 0x00, 0x00, 0x00,
+		0xE0 + (0x1F >> 0), 0xff >> 6, 0x00, 0x00,
+		0xE0 + (0x1F >> 3), 0xff >> 3, 0x00, 0x00,
+		0xE0 + (0x1F >> 4), 0xff >> 2, 0x00, 0x00,
+		0xff, 0x01, 0x01, 0x01, 
+		0xFF, 0xFF, 0xFF, 0xFF,
 	};
 	uint8_t rx[ARRAY_SIZE(tx)] = {0, };
 	struct spi_ioc_transfer tr = {
@@ -72,7 +78,7 @@ static void transfer(int fd)
 static void print_usage(const char *prog)
 {
 	printf("Usage: %s [-DsbdlHOLC3]\n", prog);
-	puts("  -D --device   device to use (default /dev/spidev1.1)\n"
+	puts("  -D --device   device to use (default /dev/spidev1.0)\n"
 	     "  -s --speed    max speed (Hz)\n"
 	     "  -d --delay    delay (usec)\n"
 	     "  -b --bpw      bits per word \n"
@@ -156,6 +162,7 @@ static void parse_opts(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
+	srand(time(NULL));
 	int ret = 0;
 	int fd;
 
