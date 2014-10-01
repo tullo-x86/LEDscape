@@ -27,12 +27,13 @@
 	"P8.17", "P8.18",
 	"P8.19",
 	          "P8.26",
+	"P8.27", "P8.28", // take over some HDMI pins
 
 	"P9.11", "P9.12",
 	"P9.13", "P9.14",
 	"P9.15", "P9.16",
 	"P9.17", "P9.18",
-	"P9.19", "P9.20", // overrides the i2c bus
+	//"P9.19", "P9.20", // overrides the i2c bus
 	"P9.21", "P9.22",
 	"P9.23", "P9.24",
 	         "P9.26",
@@ -63,6 +64,8 @@
 			0x08c 0x7 // P8.18 gpio2.1
 			0x020 0x7 // P8.19 gpio0.22
 			0x07c 0x7 // P8.26 gpio1.29
+			0x0e0 0x7 // P8.27 gpio2.22, overrides HDMI
+			0x0e8 0x7 // P8.28 gpio2.24, overrides HDMI
 
 			0x070 0x7 // P9.11 gpio0.30
 			0x078 0x7 // P9.12 gpio1.28
@@ -72,8 +75,8 @@
 			0x04c 0x7 // P9.16 gpio1.19
 			0x15c 0x7 // P9.17 gpio0.5
 			0x158 0x7 // P9.18 gpio0.4
-			0x17c 0x7 // P9.19 gpio0.13, overrides i2c
-			0x178 0x7 // P9.20 gpio0.12, overrides i2c
+			//0x17c 0x7 // P9.19 gpio0.13, overrides i2c
+			//0x178 0x7 // P9.20 gpio0.12, overrides i2c
 			0x154 0x7 // P9.21 gpio0.3
 			0x150 0x7 // P9.22 gpio0.2
 			0x044 0x7 // P9.23 gpio1.17
@@ -148,9 +151,9 @@
 &gpio1 3 0
 &gpio1 4 0
 &gpio1 5 0
-&gpio1 7 0
+&gpio1 7 0/*
 &gpio1 12 0
-&gpio1 13 0
+&gpio1 13 0*/
 &gpio1 14 0
 &gpio1 15 0
 &gpio1 20 0
@@ -175,6 +178,8 @@
 &gpio3 3 0
 &gpio3 4 0
 &gpio3 5 0
+&gpio3 22 0
+&gpio3 24 0
 &gpio3 29 0
 //&gpio4 16 0
 //&gpio4 19 0
