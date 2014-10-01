@@ -106,8 +106,8 @@
         target = <&pruss>;
         __overlay__{
             status = "okay";
-        pinctrl-names = "default";
-        pinctrl-0 = <&pruicss_ws281x_pins>;
+            pinctrl-names = "default";
+            pinctrl-0 = <&pruicss_ws281x_pins>;
 	    led_strips {
                 pin-names     =
 			"s:0",
@@ -144,40 +144,40 @@
 			"s:31";
 
                 gpios         = <
-&gpio0 2 0
-&gpio0 3 0
-&gpio0 4 0
-&gpio0 5 0
-&gpio0 7 0
-&gpio0 12 0
-&gpio0 13 0
-&gpio0 14 0
-&gpio0 15 0
-&gpio0 20 0
-&gpio0 22 0
-&gpio0 23 0
-&gpio0 26 0
-&gpio0 27 0
-&gpio0 30 0
-&gpio0 31 0
+&gpio1 2 0
+&gpio1 3 0
+&gpio1 4 0
+&gpio1 5 0
+&gpio1 7 0
 &gpio1 12 0
 &gpio1 13 0
 &gpio1 14 0
 &gpio1 15 0
-&gpio1 16 0
-&gpio1 17 0
-&gpio1 18 0
-&gpio1 19 0
-&gpio1 28 0
-&gpio1 29 0
-&gpio2 1 0
-&gpio2 2 0
-&gpio2 3 0
-&gpio2 4 0
-&gpio2 5 0
+&gpio1 20 0
+&gpio1 22 0
+&gpio1 23 0
+&gpio1 26 0
+&gpio1 27 0
+&gpio1 30 0
+&gpio1 31 0
+&gpio2 12 0
+&gpio2 13 0
+&gpio2 14 0
+&gpio2 15 0
+&gpio2 16 0
+&gpio2 17 0
+&gpio2 18 0
+&gpio2 19 0
+&gpio2 28 0
 &gpio2 29 0
-//&gpio3 16 0
-//&gpio3 19 0
+&gpio3 1 0
+&gpio3 2 0
+&gpio3 3 0
+&gpio3 4 0
+&gpio3 5 0
+&gpio3 29 0
+//&gpio4 16 0
+//&gpio4 19 0
 		>; 
             };            
         };
